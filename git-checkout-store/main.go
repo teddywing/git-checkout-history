@@ -25,7 +25,7 @@ func getHomeDir() string {
 }
 
 func OpenRCFile() (f *os.File, err error) {
-	file_path := getHomeDir() + "/.git-checkout-historyrc"
+	file_path := getHomeDir() + "/.git-checkout-history"
 	if _, err := os.Stat(file_path); os.IsNotExist(err) {
 		return os.Create(file_path)
 	} else {
@@ -41,7 +41,7 @@ func store(branch string) {
 	}
 	rcfile.Close()
 	
-	file_path := getHomeDir() + "/.git-checkout-historyrc"
+	file_path := getHomeDir() + "/.git-checkout-history"
 	data, err := ioutil.ReadFile(file_path)
 	if err != nil {
 		log.Fatal(err)
