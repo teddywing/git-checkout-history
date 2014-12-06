@@ -1,17 +1,15 @@
 package main
 
-
 import (
 	"bytes"
+	"fmt"
 	"os"
 	"os/exec"
-	"fmt"
 )
-
 
 func main() {
 	args := os.Args[1:]
-	
+
 	if len(args) > 0 {
 		cmd := exec.Command("git", "checkout", args[0])
 		var out bytes.Buffer
