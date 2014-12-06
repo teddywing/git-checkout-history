@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/teddywing/git-checkout-history/utils"
 	"io/ioutil"
 	"log"
 	"os"
@@ -44,11 +45,14 @@ func main() {
 	
 	if len(args) > 0 {
 		branchIndex, _ := strconv.Atoi(args[0])
+		
 		cmd := exec.Command("git", "checkout", branchList.Branches[branchIndex])
 		err := cmd.Run()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, err.Error())
 		}
+		
+		utils.Store(branchList.Branches[branchIndex])
 	} else {
 		// List branches in history
 		for i := 1; i < len(branchList.Branches); i++ {
