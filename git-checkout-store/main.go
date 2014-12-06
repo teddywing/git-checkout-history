@@ -52,7 +52,7 @@ func store(branch string) {
 		log.Fatal(err)
 	}
 	
-	branchList.Branches = append(branchList.Branches, branch)
+	branchList.Branches = append([]string{branch}, branchList.Branches...)
 	
 	data, err = yaml.Marshal(&branchList)
 	if err != nil {
