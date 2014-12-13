@@ -9,6 +9,8 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+var history_file string = ".git-checkout-history"
+
 type BranchList struct {
 	Branches []string
 }
@@ -22,7 +24,7 @@ func getHomeDir() string {
 }
 
 func OpenRCFile() (f *os.File, err error) {
-	file_path := getHomeDir() + "/.git-checkout-history"
+	file_path := getHomeDir() + "/" + history_file
 	if _, err := os.Stat(file_path); os.IsNotExist(err) {
 		return os.Create(file_path)
 	} else {
@@ -38,7 +40,7 @@ func Store(branch string) {
 	}
 	rcfile.Close()
 	
-	file_path := getHomeDir() + "/.git-checkout-history"
+	file_path := getHomeDir() + "/" + history_file
 	data, err := ioutil.ReadFile(file_path)
 	if err != nil {
 		log.Fatal(err)
