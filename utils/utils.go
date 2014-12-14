@@ -63,3 +63,20 @@ func Store(branch string) {
 		log.Fatal(err)
 	}
 }
+
+func Branches() []string {
+	branchList := BranchList{}
+	
+	file_path := getHomeDir() + "/" + history_file
+	data, err := ioutil.ReadFile(file_path)
+	if err != nil {
+		log.Fatal(err)
+	}
+	
+	err = yaml.Unmarshal(data, &branchList)
+	if err != nil {
+		log.Fatal(err)
+	}
+	
+	return branchList.Branches
+}
