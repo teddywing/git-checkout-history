@@ -23,7 +23,7 @@ func getHomeDir() string {
 	return usr.HomeDir
 }
 
-func OpenRCFile() (f *os.File, err error) {
+func OpenHistoryFile() (f *os.File, err error) {
 	file_path := getHomeDir() + "/" + history_file
 	if _, err := os.Stat(file_path); os.IsNotExist(err) {
 		return os.Create(file_path)
@@ -34,7 +34,7 @@ func OpenRCFile() (f *os.File, err error) {
 
 func Store(branch string) {
 	branchList := BranchList{}
-	rcfile, err := OpenRCFile()
+	rcfile, err := OpenHistoryFile()
 	if err != nil {
 		log.Fatal(err)
 	}
