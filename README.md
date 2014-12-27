@@ -40,6 +40,17 @@ To make the tool easier to use, git aliases can be used:
 	$ git chs a-branch
 
 
+## Installation
+Visit the [releases](https://github.com/teddywing/git-checkout-history/releases) page and download `git-checkout-history` and `git-checkout-store` for your platform. Put these binaries on your PATH and you should be able to run them using `git`.
+
+### Installing From Source
+Run these commands to build `git-checkout-history` and `git-checkout-store`:
+
+	$ go get github.com/teddywing/git-checkout-history
+	$ go install github.com/teddywing/git-checkout-history/git-checkout-history
+	$ go install github.com/teddywing/git-checkout-history/git-checkout-store
+
+
 ## Known Issues
 * Currently, branch history is stored globally. When used in multiple repositories, all branches go to the same list. There should be a different branch storage list for each repository.
 * History never gets cleared. Not sure if this is actually an issue, but personally I don't really care about branch history from before the current day.
