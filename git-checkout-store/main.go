@@ -16,7 +16,7 @@ func main() {
 		
 		cmd := exec.Command("git", "checkout", args[0])
 		var out bytes.Buffer
-		cmd.Stdout = &out
+		cmd.Stderr = &out
 		err := cmd.Run()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, err.Error())
