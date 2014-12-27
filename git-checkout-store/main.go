@@ -12,9 +12,9 @@ func main() {
 	args := os.Args[1:]
 	
 	if len(args) > 0 {
-		utils.Store(args[0])
+		utils.Store(args[len(args) - 1])
 		
-		cmd := exec.Command("git", "checkout", args[0])
+		cmd := exec.Command("git", append([]string{"checkout"}, args...)...)
 		var out bytes.Buffer
 		cmd.Stderr = &out
 		err := cmd.Run()
