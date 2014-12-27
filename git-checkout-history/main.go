@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"github.com/teddywing/git-checkout-history/utils"
 	"os"
@@ -17,10 +18,13 @@ func main() {
 		branchIndex, _ := strconv.Atoi(args[0])
 		
 		cmd := exec.Command("git", "checkout", branches[branchIndex])
+		var out bytes.Buffer
+		cmd.Stderr = &out
 		err := cmd.Run()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, err.Error())
 		}
+		fmt.Print(out.String())
 		
 		utils.Store(branches[branchIndex])
 	} else {
