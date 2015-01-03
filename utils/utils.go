@@ -52,7 +52,11 @@ func currentGitDir() string {
 		if err := cmd.Run(); err != nil {
 			panic(err)
 		}
-		return git_directory.String()
+		
+		dir_trimmed := git_directory.String()
+		
+		// Trim newline at the end of the directory string
+		return dir_trimmed[:len(dir_trimmed) - 1]
 	}
 	
 	return ""
