@@ -51,6 +51,12 @@ Run these commands to build `git-checkout-history` and `git-checkout-store`:
 	$ go install github.com/teddywing/git-checkout-history/git-checkout-store
 
 
+## Shell Completion
+If you use bash or zsh completion for git, a patch file is included to add this functionality for `git-checkout-store`. The patch enables `checkout-store` to have the same completion functionality as `checkout`. It can be applied as usual:
+
+	$ patch path/to/git-completion.bash < path/to/git-completion.bash.patch
+
+
 ## Known Issues
 * Currently, branch history is stored globally. When used in multiple repositories, all branches go to the same list. There should be a different branch storage list for each repository.
 * History never gets cleared. Not sure if this is actually an issue, but personally I don't really care about branch history from before the current day.
