@@ -1,0 +1,18 @@
+--- git-completion.bash.orig	2015-01-06 16:19:15.000000000 -0500
++++ git-completion.bash	2015-01-06 16:35:14.000000000 -0500
+@@ -940,10 +940,15 @@
+ 		__gitcomp_nl "$(__git_refs '' $track)"
+ 		;;
+ 	esac
+ }
+ 
++_git_checkout_store ()
++{
++	_git_checkout
++}
++
+ _git_cherry ()
+ {
+ 	__gitcomp "$(__git_refs)"
+ }
+ 
