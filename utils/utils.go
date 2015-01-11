@@ -15,10 +15,6 @@ import (
 
 var history_file string = ".git-checkout-history"
 
-type BranchList struct {
-	Branches []string
-}
-
 func getHomeDir() string {
 	usr, err := user.Current()
 	if err != nil {
@@ -72,7 +68,6 @@ func OpenHistoryFile() (f *os.File, err error) {
 }
 
 func Store(branch string) {
-	branchList := BranchList{}
 	rcfile, err := OpenHistoryFile()
 	if err != nil {
 		log.Fatal(err)
@@ -85,12 +80,15 @@ func Store(branch string) {
 		log.Fatal(err)
 	}
 	
+	branchList := make(map[string][]string)
+	
 	err = yaml.Unmarshal(data, &branchList)
 	if err != nil {
 		log.Fatal(err)
 	}
 	
-	branchList.Branches = append([]string{branch}, branchList.Branches...)
+	current_git_dir := currentGitDir()
+	branchList[current_git_dir] = append([]string{branch}, branchList[current_git_dir]...)
 	
 	data, err = yaml.Marshal(&branchList)
 	if err != nil {
@@ -104,7 +102,7 @@ func Store(branch string) {
 }
 
 func Branches() []string {
-	branchList := BranchList{}
+	branchList := make(map[string][]string)
 	
 	file_path := getHomeDir() + "/" + history_file
 	data, err := ioutil.ReadFile(file_path)
@@ -117,5 +115,5 @@ func Branches() []string {
 		log.Fatal(err)
 	}
 	
-	return branchList.Branches
+	return branchList[currentGitDir()]
 }
