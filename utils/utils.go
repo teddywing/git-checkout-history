@@ -70,7 +70,7 @@ func Branches() []string {
 	file_path := getHomeDir() + "/" + history_file
 	data, err := ioutil.ReadFile(file_path)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("ERROR: No checkout history file. Run `checkout-store` to create it.")
 	}
 	
 	err = yaml.Unmarshal(data, &branchList)
