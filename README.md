@@ -58,7 +58,6 @@ If you use bash or zsh completion for git, a patch file is included to add this 
 
 
 ## Known Issues
-* Currently, branch history is stored globally. When used in multiple repositories, all branches go to the same list. There should be a different branch storage list for each repository.
 * History never gets cleared. Not sure if this is actually an issue, but personally I don't really care about branch history from before the current day.
 
 
