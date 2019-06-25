@@ -46,7 +46,7 @@ Visit the [releases](https://github.com/teddywing/git-checkout-history/releases)
 ### Installing From Source
 Run these commands to build `git-checkout-history` and `git-checkout-store`:
 
-	$ go get github.com/teddywing/git-checkout-history
+	$ go get github.com/teddywing/git-checkout-history/...
 	$ go install github.com/teddywing/git-checkout-history/git-checkout-history
 	$ go install github.com/teddywing/git-checkout-history/git-checkout-store
 
